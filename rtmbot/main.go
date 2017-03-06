@@ -99,12 +99,9 @@ func main() {
 
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt)
-	select {
-	case <-interrupt:
-		fmt.Println("Closing RTM connection...")
-		msg := websocket.FormatCloseMessage(websocket.CloseNormalClosure, "")
-		err = c.WriteMessage(websocket.CloseMessage, msg)
-		fatal(err != nil, "fail to close socker:", err)
-		return
-	}
+	<-interrupt
+	fmt.Println("Closing RTM connection...")
+	msg := websocket.FormatCloseMessage(websocket.CloseNormalClosure, "")
+	err = c.WriteMessage(websocket.CloseMessage, msg)
+	fatal(err != nil, "fail to close socker:", err)
 }
