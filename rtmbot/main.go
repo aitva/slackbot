@@ -54,30 +54,44 @@ func main() {
 	fatal(err != nil, "connection fail:", err)
 	defer c.Close()
 
+	channels := make(chan rtmMsg)
 	go func() {
-		id := 1
-		msg := rtmMsg{}
 		for {
 			_, message, err := c.ReadMessage()
 			if err != nil {
-				fmt.Println("fail to read message:", err)
-				continue
+				fmt.Fprintln(os.Stderr, "fail to read message:", err)
+				return
 			}
 			fmt.Println(string(message))
+
+			msg := rtmMsg{}
 			err = json.Unmarshal(message, &msg)
 			if err != nil {
-				fmt.Println("fail to parse message:", err)
-				continue
+				fmt.Fprintln(os.Stderr, "fail to parse message:", err)
+				return
 			}
 			if msg.Type != "message" {
 				continue
 			}
-			msg.ID = id
-			msg.Text = "Hello Wolrd!"
-			err = c.WriteJSON(&msg)
+			channels <- msg
+		}
+	}()
+
+	go func() {
+		id := 0
+		for {
+			req := <-channels
+			resp := rtmMsg{
+				ID:      id,
+				Type:    "message",
+				Text:    "Hello!",
+				Channel: req.Channel,
+			}
+
+			err := c.WriteJSON(&resp)
 			if err != nil {
 				fmt.Println("fail to send message:", err)
-				continue
+				return
 			}
 			id++
 		}
