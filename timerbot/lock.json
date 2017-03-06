@@ -1,0 +1,13 @@
+{
+    "memo": "553a9da6946a673260d283dde669e7efb26ae2904522dd7a394631690d0ead42",
+    "projects": [
+        {
+            "name": "github.com/gorilla/websocket",
+            "branch": "master",
+            "revision": "c36f2fe5c330f0ac404b616b96c438b8616b1aaf",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}
