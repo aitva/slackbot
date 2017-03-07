@@ -1,0 +1,103 @@
+{
+    "memo": "a13b8a79884930c3ffd06ac99e91f66f0630961c767bdff69fdd386c0d823db2",
+    "projects": [
+        {
+            "name": "cloud.google.com/go",
+            "branch": "master",
+            "revision": "3c4c8cc11d151d76587802cb55dd7b80beca832b",
+            "packages": [
+                "compute/metadata",
+                "internal"
+            ]
+        },
+        {
+            "name": "github.com/golang/protobuf",
+            "branch": "master",
+            "revision": "69b215d01a5606c843240eab4937eab3acee6530",
+            "packages": [
+                "proto"
+            ]
+        },
+        {
+            "name": "github.com/googleapis/gax-go",
+            "branch": "master",
+            "revision": "da06d194a00e19ce00d9011a13931c3f6f6887c7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "d379faa25cbdc04d653984913a2ceb43b0bc46d7",
+            "packages": [
+                "context",
+                "context/ctxhttp",
+                "http2",
+                "http2/hpack",
+                "idna",
+                "internal/timeseries",
+                "lex/httplex",
+                "trace"
+            ]
+        },
+        {
+            "name": "golang.org/x/oauth2",
+            "branch": "master",
+            "revision": "314dd2c0bf3ebd592ec0d20847d27e79d0dbe8dd",
+            "packages": [
+                ".",
+                "google",
+                "internal",
+                "jws",
+                "jwt"
+            ]
+        },
+        {
+            "name": "google.golang.org/api",
+            "branch": "master",
+            "revision": "55146ba61254fdb1c26d65ff3c04bc1611ad73fb",
+            "packages": [
+                "calendar/v3",
+                "gensupport",
+                "googleapi",
+                "googleapi/internal/uritemplates"
+            ]
+        },
+        {
+            "name": "google.golang.org/appengine",
+            "version": "v1.0.0",
+            "revision": "150dc57a1b433e64154302bdc40b6bb8aefa313a",
+            "packages": [
+                ".",
+                "internal",
+                "internal/app_identity",
+                "internal/base",
+                "internal/datastore",
+                "internal/log",
+                "internal/modules",
+                "internal/remote_api",
+                "internal/urlfetch",
+                "urlfetch"
+            ]
+        },
+        {
+            "name": "google.golang.org/grpc",
+            "branch": "master",
+            "revision": "9d682f9293b408c42d17c587d0e2a31237ac3f10",
+            "packages": [
+                ".",
+                "codes",
+                "credentials",
+                "grpclog",
+                "internal",
+                "metadata",
+                "naming",
+                "peer",
+                "stats",
+                "tap",
+                "transport"
+            ]
+        }
+    ]
+}
