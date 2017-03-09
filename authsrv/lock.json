@@ -1,0 +1,45 @@
+{
+    "memo": "27ca30d086b589f737fb0dfba86116fb4ba3b6f91f996425c5eaf9373a6847a4",
+    "projects": [
+        {
+            "name": "github.com/golang/protobuf",
+            "branch": "master",
+            "revision": "c9c7427a2a70d2eb3bafa0ab2dc163e45f143317",
+            "packages": [
+                "proto"
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "a6577fac2d73be281a500b310739095313165611",
+            "packages": [
+                "context"
+            ]
+        },
+        {
+            "name": "golang.org/x/oauth2",
+            "branch": "master",
+            "revision": "efb10a30610e617dbb17fc243f4cc61a8cfa2903",
+            "packages": [
+                ".",
+                "internal",
+                "slack"
+            ]
+        },
+        {
+            "name": "google.golang.org/appengine",
+            "version": "v1.0.0",
+            "revision": "150dc57a1b433e64154302bdc40b6bb8aefa313a",
+            "packages": [
+                "internal",
+                "internal/base",
+                "internal/datastore",
+                "internal/log",
+                "internal/remote_api",
+                "internal/urlfetch",
+                "urlfetch"
+            ]
+        }
+    ]
+}
