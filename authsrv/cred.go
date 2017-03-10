@@ -24,13 +24,22 @@ type webhookToken struct {
 }
 type slackToken struct {
 	*oauth2.Token
-	Bot     *botToken     `json:"bot,omitempty"`
-	Webhook *webhookToken `json:"incoming_webhook,omitempty"`
+	UserID   string        `json:"user_id"`
+	TeamName string        `json:"team_name"`
+	Bot      *botToken     `json:"bot,omitempty"`
+	Webhook  *webhookToken `json:"incoming_webhook,omitempty"`
 }
 
 func newSlackToken(tok *oauth2.Token) *slackToken {
 	stok := &slackToken{Token: tok}
-	iface := tok.Extra("bot")
+
+	iface := tok.Extra("user_id")
+	stok.UserID = iface.(string)
+
+	iface = tok.Extra("team_name")
+	stok.TeamName = iface.(string)
+
+	iface = tok.Extra("bot")
 	fields, ok := iface.(map[string]interface{})
 	if ok {
 		bot := &botToken{}
@@ -48,6 +57,27 @@ func newSlackToken(tok *oauth2.Token) *slackToken {
 		stok.Webhook = webhook
 	}
 	return stok
+}
+
+func slackTokenFromFile(filename string) (*slackToken, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	t := &slackToken{}
+	err = json.NewDecoder(f).Decode(t)
+	f.Close()
+	return t, err
+}
+
+func (tok *slackToken) Save(filename string) {
+	fmt.Printf("Saving credential file to: %s\n", filename)
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Unable to cache oauth token: %v", err)
+	}
+	json.NewEncoder(f).Encode(tok)
+	f.Close()
 }
 
 // tokenCacheFile generates credential file path/filename.
@@ -71,7 +101,7 @@ func tokenFromFile(filename string) (*oauth2.Token, error) {
 	}
 	t := &oauth2.Token{}
 	err = json.NewDecoder(f).Decode(t)
-	defer f.Close()
+	f.Close()
 	return t, err
 }
 
@@ -83,8 +113,8 @@ func saveToken(filename string, token *oauth2.Token) {
 	if err != nil {
 		log.Fatalf("Unable to cache oauth token: %v", err)
 	}
-	defer f.Close()
 	json.NewEncoder(f).Encode(token)
+	f.Close()
 }
 
 // SlackConfigFromJSON load Slack config from a JSON document as followed:
