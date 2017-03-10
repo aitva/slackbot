@@ -1,11 +1,7 @@
 # Authsrv
 
 This is an attempt at building a slackbot with Google Drive access.
-For now I am stuck with Slack asking for `Authentication token` as a request parameter.
+The Slack bot is now working but it is tied up to a team.
 
-Are they asking for the OAuth token? How can I get the `bot_access_token` out of the OAuth2 lib?
-And how should I use it (expiration, renewal, etc...)?
-
-- They are asking for the OAuth token.
-- I get the `bot_access_token` when asking for bot access.
-- Token doesn't expire on Slack.
+To continue toward Google Calendar access, a database is now necessary.
+The bot need to be able to associate a user to a calendar.
