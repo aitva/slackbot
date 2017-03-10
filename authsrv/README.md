@@ -5,3 +5,7 @@ For now I am stuck with Slack asking for `Authentication token` as a request par
 
 Are they asking for the OAuth token? How can I get the `bot_access_token` out of the OAuth2 lib?
 And how should I use it (expiration, renewal, etc...)?
+
+- They are asking for the OAuth token.
+- I get the `bot_access_token` when asking for bot access.
+- Token doesn't expire on Slack.
